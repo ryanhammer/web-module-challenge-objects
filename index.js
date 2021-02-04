@@ -15,8 +15,9 @@ The function should:
   Example createMenuItem('tacos', 8, 'Lunch') should return {name: 'tacos', price: 8, category: 'Lunch'}
 */
 
-function createMenuItem(/*Your code here*/){
-    /*Your code here*/
+function createMenuItem(food, cost, type) {
+    const item = {name: food, price: cost, category: type};
+    return item;
 }
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1b: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -28,7 +29,9 @@ Test your createMenuItems function by doing the following:
   
   For example: createMenuItem("pizza",5,"lunch") would return this as the object: {name:"Pizza",price:5,category:"lunch"}
 */
-
+console.log(createMenuItem("hot dog", 2, "lunch"));
+console.log(createMenuItem("turkey club", 7, "lunch"));
+console.log(createMenuItem("surf n turf", 32, "dinner"));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -48,7 +51,17 @@ export const burger = {
   name: "Burger", 
   price: 18, 
   category: "Lunch", 
-  /*Your code here*/
+  discount: function cost(customer) {
+      if (customer === "teacher") {
+          return 0.75 * this.price;
+      }
+      else if (customer === "student") {
+          return 0.9 * this.price;
+      }
+      else {
+          return this.price;
+      }
+  }
 }
 
 
@@ -70,7 +83,7 @@ Using the reviews array above:
   1. log only Julius' feedback to the console - no function needed 
 */
 
-
+console.log(reviews[5].feedback);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -79,7 +92,8 @@ Using the reviews array above do the following: (no function needed)
   2. log the whole array to the console, make sure the new review is inside of it   
 */
 
-
+reviews.push({name: "Austin Allred", rating: 4, feedback: "I largely enjoyed my experience and found the atmosphere really inspiring"});
+console.log(reviews);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Reyna's feedback is missing! Use what you know to do the following: (no function needed) 
@@ -87,7 +101,8 @@ Reyna's feedback is missing! Use what you know to do the following: (no function
   2. log the reviews array to the console to check your work
 */
 
-
+reviews[7].feedback = "this place is chill with really cool people, great for getting work done on weekdays";
+console.log(reviews);
 
 
 
@@ -102,12 +117,10 @@ Use the getReviewByIndex function below to do the following:
 */
 
 
-function getReviewByIndex(/*Your code here*/) {
-  /*Your code here*/
+function getReviewByIndex(reviewArray, indexNum) {
+    return `${reviewArray[indexNum].name} gave the restaurant a ${reviewArray[indexNum].rating} star review, and their feedback was: ${reviewArray[indexNum].feedback}`;
 }
 
-
-  
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Write a function to get information about the most recent (last) review called `getLastReview`
@@ -121,9 +134,11 @@ Use the getLastReview function below to do the following:
 */
 
 
-function getLastReview(/*Your code here*/) {
-  /*Your code here*/
-} 
+function getLastReview(reviewArr) {
+    return `${reviewArr[(reviewArr.length-1)].name} gave the restaurant a ${reviewArr[(reviewArr.length-1)].rating} star review, and their feedback was: ${reviewArr[(reviewArr.length-1)].feedback}`;
+}
+
+getLastReview(reviews);
 
 
 
@@ -143,9 +158,22 @@ Use the getReviewsByRating function below to do the following:
   ]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
+ function getReviewByRating(reviewsArr, reviewRating) {
+    let reviewByRating = [];
+
+    for (let i = 0; i < reviewsArr.length; i++) {
+        if (Math.floor(reviewsArr[i].rating) === reviewRating) {
+            reviewByRating.push(reviewsArr[i]);
+        }
+        else {
+
+        }
+    }
+
+    return reviewByRating;
+
   }
+console.log(getReviewByRating(reviews, 4));
 
   
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪💪   
@@ -161,10 +189,19 @@ Use the getLongReviews function below to do the following:
   ]
 */
 
-function getLongReviews(/* code here */) {
-    /* code here */
+function getLongReviews(reviewsArray) {
+    let longReviews = [];
+    for (let i = 0; i < reviewsArray.length; i++) {
+        if (reviewsArray[i].feedback.split(" ").length > 15) {
+            longReviews.push(reviewsArray[i]);
+        }
+        else {}
+    
+    }
+    return longReviews;
   }
-  
+
+  console.log(getLongReviews(reviews));
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪💪💪💪💪 
 This stretch goal does not use the reviews data!  You create your own object in this stretch goal.
